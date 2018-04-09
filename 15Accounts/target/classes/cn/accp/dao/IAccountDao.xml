@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.accp.dao.IAccountDao">
+
+    <select id="selectAccountOne" resultType="Account">
+        select * from account
+        <where>
+            <if test="number!=null">
+                and account.number=#{number}
+            </if>
+            <if test="pwd!=null">
+                and pwd=#{pwd}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateAccountup">
+        update account   set balnace=balnace+#{balnace} where account.number=#{number}
+    </update>
+    <update id="updateAccountdown">
+        update account   set balnace=balnace-#{balnace} where account.number=#{number}
+    </update>
+</mapper>
